@@ -1140,14 +1140,11 @@ def pull(repo_dir: str, branch: str, revision: str) -> None:
 
     def do_pull() -> None:
         _run_hg_cmd(
-            None,
-            "robustcheckout",
-            f"https://hg.mozilla.org/{branch}/".encode("ascii"),
             repo_dir,
-            sharebase=repo_dir + "-shared",
-            networkattempts=7,
-            revision=revision,
-            noupdate=True,
+            "pull",
+            f"https://hg.mozilla.org/{branch}/".encode("ascii"),
+            r=revision.encode("ascii"),
+            debug=True,
         )
 
     try:
